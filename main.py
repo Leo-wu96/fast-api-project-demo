@@ -1,11 +1,14 @@
 from typing import Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
-
+from enum import Enum
 
 app = FastAPI()
 
-
+class ModelName(str, Enum):
+    tina = "tina"
+    leo = "leo"
+    shopee = "shopee"
 
 class Item(BaseModel):
     name:str
@@ -29,4 +32,17 @@ def update_item(item_id:int, item:Item):
     return {"item_price": item.price, "item_id": item_id}
 
 
-#start up: uvicorn main:app --reload
+@app.get("/models/{model_name}")
+def get_model(model_name:ModelName):
+    if model_name == ModelName.tina:
+        return {"model_name": model_name, "message": "Good Girl!!!"}
+    
+    if model_name.value == 'leo':
+        return {"model_name": model_name, "message": "Bad Boy!!!"}
+
+    return {"model_name": model_name, "message": "BBGG!!!"}
+
+
+
+
+#terminal: start up: uvicorn main:app --reload
