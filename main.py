@@ -1,3 +1,9 @@
+'''
+Author: zixian.wu@shopee.com
+Date: 2024-04-15 10:38:39
+LastEditTime: 2024-04-16 11:08:04
+Description: file content
+'''
 from typing import Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -45,4 +51,10 @@ def get_model(model_name:ModelName):
 
 
 
-#terminal: start up: uvicorn main:app --reload
+
+
+
+
+
+
+# terminal: start up: uvicorn main:app --reload
