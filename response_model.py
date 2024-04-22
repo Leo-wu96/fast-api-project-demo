@@ -1,7 +1,7 @@
 '''
 Author: zixian.wu@shopee.com
 Date: 2024-04-18 15:39:21
-LastEditTime: 2024-04-18 18:52:47
+LastEditTime: 2024-04-19 15:13:24
 Description: file content
 '''
 from typing import Optional
@@ -43,10 +43,10 @@ class Item(BaseModel):
 items = {
     "foo": {"name": "Foo", "price": 50.2},
     "bar": {"name": "Bar", "description": "The bartenders", "price": 62, "tax": 20.2},
-    "baz": {"name": "Baz", "description": None, "price": 50.2, "tax": 10.5, "tags": []},
+    "baz": {"name": "Baz", "description": None, "price": 50.2, "tax": 0.5, "tags": []},
 }
 
-# response_model_exclude_unset: 从结果中忽略它们的默认值
+# response_model_exclude_unset: 从结果中忽略它们的默认值, 但是像baz这种显式定义了变量值的，则照常会显示
 @app.get("/items/", response_model=Item, response_model_exclude_unset=True)
 async def read_items(item_id: str):
     return items[item_id]
