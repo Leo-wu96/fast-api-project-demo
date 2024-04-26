@@ -1,7 +1,7 @@
 '''
 Author: zixian.wu@shopee.com
 Date: 2024-04-19 16:13:26
-LastEditTime: 2024-04-22 12:02:03
+LastEditTime: 2024-04-22 14:05:24
 Description: file content
 '''
 from typing import Union, Optional, List, Dict
@@ -100,8 +100,6 @@ items = {
 @app.get("/items/", response_model=Union[CarItem, PlantItem])
 async def get_items(item_id: str):
     return items[item_id]
-
-
 
 
 

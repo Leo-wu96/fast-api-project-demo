@@ -1,0 +1,30 @@
+--------------------------------------------------------------------
+Task Start Running
+--------------------------------------------------------------------
+2024-04-25 15:17:26 (UTC+8) INFO - Task RunID: olap-query.af239710f4a6-880a03be-d7bc-4712-820d-2b88678c2b34
+2024-04-25 15:17:26 (UTC+8) INFO - Update task instance status [SCHEDULED->RUNNING]
+--------------------------------------------------------------------
+Execute OLAP Task
+--------------------------------------------------------------------
+2024-04-25 15:17:26 (UTC+8) INFO - Preparing OLAP task running
+2024-04-25 15:17:26 (UTC+8) INFO - Check query complexity
+2024-04-25 15:17:26 (UTC+8) INFO - Check query plan
+2024-04-25 15:17:26 (UTC+8) INFO - Checking if OLAP Fusion is enabled
+2024-04-25 15:17:26 (UTC+8) INFO - Check StarRocks cluster utilisation
+2024-04-25 15:17:26 (UTC+8) INFO - StarRocks executing has started with SQL: WITH sub_query_buyer_mp_placed_order_gmv_1d_lus3kg24 AS (SELECT data_go.user_segment_ads_user_gmv_1d.user_id, data_go.user_segment_ads_user_gmv_1d.grass_date, COUNT(DISTINCT(COALESCE(data_go.user_segment_ads_user_gmv_1d.buyer_mp_placed_order_gmv_1d, 0))) AS buyer_mp_placed_order_gmv_1d_buyer_mp_placed_order_gmv_1d FROM data_go.user_segment_ads_user_gmv_1d WHERE data_go.user_segment_ads_user_gmv_1d.grass_date BETWEEN date('2024-03-26') AND date('2024-04-24') AND data_go.user_segment_ads_user_gmv_1d.seller_mp_placed_order_gmv_1d >= 1.0 GROUP BY data_go.user_segment_ads_user_gmv_1d.user_id, data_go.user_segment_ads_user_gmv_1d.grass_date), sub_query_seller_mp_placed_order_gmv_1d_lus3kg24 AS (SELECT data_go.user_segment_ads_user_gmv_1d.user_id, data_go.user_segment_ads_user_gmv_1d.grass_date, AVG(COALESCE(data_go.user_segment_ads_user_gmv_1d.seller_mp_placed_order_gmv_1d, 0)) AS seller_mp_placed_order_gmv_1d_seller_mp_placed_order_gmv_1d, data_go.user_segment_ads_user_gmv_1d.seller_mp_placed_order_gmv_1d / data_go.user_segment_ads_user_gmv_1d.seller_mp_placed_order_cnt_1d AS seller_mp_placed_order_gmv_1d_target, data_go.user_segment_ads_user_gmv_1d.grass_region || '_local' AS seller_mp_placed_order_gmv_1d_fx FROM data_go.user_segment_ads_user_gmv_1d WHERE data_go.user_segment_ads_user_gmv_1d.seller_mp_placed_order_gmv_1d >= 1.0 GROUP BY data_go.user_segment_ads_user_gmv_1d.user_id, data_go.user_segment_ads_user_gmv_1d.grass_date, data_go.user_segment_ads_user_gmv_1d.seller_mp_placed_order_gmv_1d / data_go.user_segment_ads_user_gmv_1d.seller_mp_placed_order_cnt_1d, data_go.user_segment_ads_user_gmv_1d.grass_region || '_local') SELECT data_go.user_segment_ads_user_gmv_1d.buyer_mp_placed_order_cnt_1d AS buyer_mp_placed_order_cnt_1d, sub_query_buyer_mp_placed_order_gmv_1d_lus3kg24.buyer_mp_placed_order_gmv_1d_buyer_mp_placed_order_gmv_1d, sub_query_seller_mp_placed_order_gmv_1d_lus3kg24.seller_mp_placed_order_gmv_1d_seller_mp_placed_order_gmv_1d, sub_query_seller_mp_placed_order_gmv_1d_lus3kg24.seller_mp_placed_order_gmv_1d_target, sub_query_seller_mp_placed_order_gmv_1d_lus3kg24.seller_mp_placed_order_gmv_1d_fx, dev_metrics_center.metric_center_test_zx_sg.grass_region AS grass_region_2, dev_metrics_center.metric_center_test_zx_sg.grass_date AS grass_date_2, data_go.user_segment_ads_user_gmv_1d.grass_region AS grass_region_1, data_go.user_segment_ads_user_features_td.gender AS gender, data_go.user_segment_ads_user_features_td.grass_region AS grass_region FROM data_go.user_segment_ads_user_features_td FULL OUTER JOIN data_go.user_segment_ads_user_gmv_1d ON (data_go.user_segment_ads_user_features_td.user_id = data_go.user_segment_ads_user_gmv_1d.user_id AND data_go.user_segment_ads_user_features_td.grass_date = data_go.user_segment_ads_user_gmv_1d.grass_date) LEFT JOIN dev_metrics_center.metric_center_test_zx_sg ON data_go.user_segment_ads_user_features_td.buyer_last_purchase_datetime_td = dev_metrics_center.metric_center_test_zx_sg.grass_date FULL OUTER JOIN sub_query_buyer_mp_placed_order_gmv_1d_lus3kg24 ON (data_go.user_segment_ads_user_features_td.user_id = sub_query_buyer_mp_placed_order_gmv_1d_lus3kg24.user_id AND data_go.user_segment_ads_user_features_td.grass_date = sub_query_buyer_mp_placed_order_gmv_1d_lus3kg24.grass_date) FULL OUTER JOIN sub_query_seller_mp_placed_order_gmv_1d_lus3kg24 ON (data_go.user_segment_ads_user_features_td.user_id = sub_query_seller_mp_placed_order_gmv_1d_lus3kg24.user_id AND data_go.user_segment_ads_user_features_td.grass_date = sub_query_seller_mp_placed_order_gmv_1d_lus3kg24.grass_date) WHERE data_go.user_segment_ads_user_gmv_1d.seller_mp_placed_order_gmv_1d >= 1.0 AND data_go.user_segment_ads_user_features_td.birthday BETWEEN date('2023-01-01') AND date('2023-12-31') LIMIT 2000
+2024-04-25 15:17:26 (UTC+8) INFO - Start time: 2024-04-25T15:17:26.285+08:00[Asia/Singapore]
+2024-04-25 15:17:26 (UTC+8) INFO - Set the query timeout to [60000] ms
+2024-04-25 15:17:26 (UTC+8) INFO - Prepare to write ResultSet to sink with CSV format
+2024-04-25 15:17:26 (UTC+8) INFO - Write BOM to sink
+2024-04-25 15:17:26 (UTC+8) INFO - Start to write ResultSet to sink in UTF-8
+2024-04-25 15:17:26 (UTC+8) INFO - Status: RUNNING...
+2024-04-25 15:17:26 (UTC+8) INFO - Complete creating JDBC Connection in [51] ms
+2024-04-25 15:17:26 (UTC+8) INFO - Create statement from URL jdbc:mysql://10.218.195.164:9030/data_go with streaming mode
+2024-04-25 15:17:26 (UTC+8) INFO - Complete creating JDBC Statement in [9] ms
+--------------------------------------------------------------------
+Task Execution Fail
+--------------------------------------------------------------------
+2024-04-25 15:22:14 (UTC+8) INFO - StarRocks execution has failed
+2024-04-25 15:22:14 (UTC+8) ERROR- Task failed due to Did not observe any item or terminal signal within 60000ms in 'source(MonoCallable)' (and no fallback has been configured)
+2024-04-25 15:22:14 (UTC+8) INFO - Whole task execution ended
+2024-04-25 15:22:14 (UTC+8) INFO - Total Elapse time: [288382] ms
